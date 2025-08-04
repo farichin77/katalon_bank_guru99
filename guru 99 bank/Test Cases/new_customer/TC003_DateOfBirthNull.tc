@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description></description>
+   <name>TC003_DateOfBirthNull</name>
+   <tag></tag>
+   <comment></comment>
+   <recordOption>OTHER</recordOption>
+   <testCaseGuid>9ec1ce1a-e682-4aae-8adc-6144287f6218</testCaseGuid>
+</TestCaseEntity>

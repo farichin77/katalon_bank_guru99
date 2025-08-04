@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description></description>
+   <name>TC002_noAccountBlank</name>
+   <tag></tag>
+   <comment></comment>
+   <recordOption>OTHER</recordOption>
+   <testCaseGuid>c8dd95d9-a4f7-4102-8ca8-5e9d8c031bfe</testCaseGuid>
+</TestCaseEntity>

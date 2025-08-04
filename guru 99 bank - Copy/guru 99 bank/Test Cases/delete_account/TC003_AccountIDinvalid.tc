@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description></description>
+   <name>TC003_AccountIDinvalid</name>
+   <tag></tag>
+   <comment></comment>
+   <recordOption>OTHER</recordOption>
+   <testCaseGuid>0afe34b8-cb6e-4cb3-9bbd-c7a728be5a91</testCaseGuid>
+</TestCaseEntity>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description></description>
+   <name>TC_Booking_Flight</name>
+   <tag></tag>
+   <comment></comment>
+   <recordOption>OTHER</recordOption>
+   <testCaseGuid>10fd51f0-eac7-4ddc-8d85-283cf0b6f670</testCaseGuid>
+</TestCaseEntity>
