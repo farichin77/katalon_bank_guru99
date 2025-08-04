@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<TestCaseEntity>
-   <description></description>
-   <name>TC004_descriptionBlank</name>
-   <tag></tag>
-   <comment></comment>
-   <recordOption>OTHER</recordOption>
-   <testCaseGuid>10acd579-5517-4fd4-8716-b8781c5fdb65</testCaseGuid>
-</TestCaseEntity>

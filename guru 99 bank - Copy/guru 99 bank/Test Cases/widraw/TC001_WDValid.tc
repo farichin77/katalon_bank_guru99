@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<TestCaseEntity>
-   <description></description>
-   <name>TC001_WDValid</name>
-   <tag></tag>
-   <comment></comment>
-   <recordOption>OTHER</recordOption>
-   <testCaseGuid>4f7a1cb9-c07b-4ee7-b89e-c6b1b7a8dd4a</testCaseGuid>
-</TestCaseEntity>

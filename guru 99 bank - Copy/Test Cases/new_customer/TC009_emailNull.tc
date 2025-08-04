@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<TestCaseEntity>
-   <description></description>
-   <name>TC009_emailNull</name>
-   <tag></tag>
-   <comment></comment>
-   <recordOption>OTHER</recordOption>
-   <testCaseGuid>d3bad5f5-dd01-4b42-8a61-30b3fdac9eb4</testCaseGuid>
-</TestCaseEntity>

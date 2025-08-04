@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<TestCaseEntity>
-   <description></description>
-   <name>TC002_accountIDblank</name>
-   <tag></tag>
-   <comment></comment>
-   <recordOption>OTHER</recordOption>
-   <testCaseGuid>5822c340-9cd4-4600-ad13-fd4d8315ee1f</testCaseGuid>
-</TestCaseEntity>
