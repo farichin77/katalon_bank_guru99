@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<TestCaseEntity>
-   <description></description>
-   <name>TC001_balanceValid</name>
-   <tag></tag>
-   <comment></comment>
-   <recordOption>OTHER</recordOption>
-   <testCaseGuid>e3a3a03d-49d6-46f1-81cc-8bd2888e1c36</testCaseGuid>
-</TestCaseEntity>

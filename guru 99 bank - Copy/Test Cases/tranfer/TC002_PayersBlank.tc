@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<TestCaseEntity>
-   <description></description>
-   <name>TC002_PayersBlank</name>
-   <tag></tag>
-   <comment></comment>
-   <recordOption>OTHER</recordOption>
-   <testCaseGuid>b35ac2a0-9acf-4231-adca-3ba3558f4e2e</testCaseGuid>
-</TestCaseEntity>

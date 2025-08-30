@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<TestCaseEntity>
-   <description></description>
-   <name>TC008_MobileNumbNull</name>
-   <tag></tag>
-   <comment></comment>
-   <recordOption>OTHER</recordOption>
-   <testCaseGuid>ed479cbe-6b7e-4375-b9aa-b6d43bddfc74</testCaseGuid>
-</TestCaseEntity>
