@@ -16,45 +16,22 @@ import com.kms.katalon.core.util.KeywordUtil
 import com.kms.katalon.core.webui.driver.DriverFactory
 
 class NewTestListener {
-
-	@BeforeTestSuite
-	def beforeTestSuite(TestSuiteContext testSuiteContext) {
-		// Buat folder Screenshots jika belum ada
-		String screenshotDir = RunConfiguration.getProjectDir() + "/Screenshots"
-		new File(screenshotDir).mkdirs()
-		KeywordUtil.logInfo("📁 Folder Screenshots disiapkan di: " + screenshotDir)
-	}
-
+	
 	@AfterTestCase
-	def afterTestCase(TestCaseContext testCaseContext) {
-		try {
-			// Cek apakah browser terbuka
-			if (DriverFactory.getWebDriver() != null) {
-				// Ambil nama test case terakhir (hanya nama, bukan path lengkap)
-				String testCaseName = testCaseContext.getTestCaseId().tokenize('/').last()
-				String timeStamp = new Date().format("yyyyMMdd_HHmmss")
-				String screenshotPath = RunConfiguration.getProjectDir() + "/Screenshots/${testCaseName}_${timeStamp}.png"
+    def takeScreenshotOnFailure(TestCaseContext testCaseContext) {
+        try {
+            if (DriverFactory.getWebDriver() != null &&
+                testCaseContext.getTestCaseStatus() == 'FAILED') {
 
-				WebUI.takeScreenshot(screenshotPath)
-				KeywordUtil.logInfo("📸 Screenshot saved at: " + screenshotPath)
-				// Baru tutup browser setelah screenshot
-				WebUI.closeBrowser()
-			} else {
-				KeywordUtil.logInfo("❗ Browser tidak terbuka saat afterTestCase, screenshot dilewati.")
-			}
-		} catch (Exception e) {
-			KeywordUtil.markWarning("⚠️ Gagal ambil screenshot: " + e.message)
-		}
-	}
+                String testCaseName = testCaseContext.getTestCaseId().tokenize('/').last()
+                String timeStamp = new Date().format("yyyyMMdd_HHmmss")
+                String screenshotPath = RunConfiguration.getProjectDir() + "/Screenshots/${testCaseName}_${timeStamp}.png"
 
-	// Tambahan jika ingin pakai setup suite atau lainnya
-	@BeforeTestCase
-	def beforeTestCase(TestCaseContext testCaseContext) {
-		KeywordUtil.logInfo("▶️ Starting test case: " + testCaseContext.getTestCaseId())
-	}
-
-	@AfterTestSuite
-	def afterTestSuite(TestSuiteContext testSuiteContext) {
-		KeywordUtil.logInfo("✅ Test suite selesai: " + testSuiteContext.getTestSuiteId())
-	}
+                WebUI.takeScreenshot(screenshotPath)
+                KeywordUtil.logInfo("📸 Screenshot saved at: " + screenshotPath)
+            }
+        } catch (Exception e) {
+            KeywordUtil.markWarning("⚠️ Gagal ambil screenshot: " + e.message)
+        }
+    }
 }

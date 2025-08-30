@@ -17,74 +17,27 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 
-WebUI.openBrowser('')
+CustomKeywords.'helpers.LoginHelper.login'()
 
-WebUI.maximizeWindow()
+CustomKeywords.'helpers.Navigationhelper.goToNewCustomerPage'()
 
-WebUI.navigateToUrl('https://demo.guru99.com/V4/')
+CustomKeywords.'helpers.formCustomerhelper.fillNewCustomerForm'([
+    name:'',
+    dob:'',
+    address:'',
+    city:'',
+    state:'',
+    pin:'',
+    mobile:'',
+    email:'',
+    password:''
+])
 
-WebUI.setText(findTestObject('Object Repository/Page_Guru99 Bank Home Page/Page_Guru99 Bank Home Page/input_UserID_uid'), 
-    'mngr629633')
+CustomKeywords.'helpers.formCustomerhelper.submitNewCustomerForm'()
 
-WebUI.setEncryptedText(findTestObject('Object Repository/Page_Guru99 Bank Home Page/Page_Guru99 Bank Home Page/input_Password_password'), 
-    'gvzKTh1O0s0=')
+CustomKeywords.'helpers.AlertHelper.verifyAlertMessage'('please fill all fields')
 
-WebUI.click(findTestObject('Object Repository/Page_Guru99 Bank Home Page/Page_Guru99 Bank Home Page/input_Password_btnLogin'))
-
-WebUI.click(findTestObject('Object Repository/Page_Guru99 Bank Home Page/Page_Guru99 Bank Manager HomePage/a_New Customer'))
-
-WebUI.setText(findTestObject('Object Repository/Page_Guru99 Bank Home Page/Page_Guru99 Bank New Customer Entry Page/input_Customer Name_name'), 
-    '')
-
-WebUI.click(findTestObject('Object Repository/Page_Guru99 Bank Home Page/Page_Guru99 Bank New Customer Entry Page/td_malefemale'))
-
-WebUI.setText(findTestObject('Object Repository/Page_Guru99 Bank Home Page/Page_Guru99 Bank New Customer Entry Page/input_DOB'), 
-    '')
-
-WebUI.setText(findTestObject('Object Repository/Page_Guru99 Bank Home Page/Page_Guru99 Bank New Customer Entry Page/textarea_Address_addr'), 
-    '')
-
-WebUI.setText(findTestObject('Object Repository/Page_Guru99 Bank Home Page/Page_Guru99 Bank New Customer Entry Page/input_City_city'), 
-    '')
-
-WebUI.setText(findTestObject('Object Repository/Page_Guru99 Bank Home Page/Page_Guru99 Bank New Customer Entry Page/input_State_state'), 
-    '')
-
-WebUI.setText(findTestObject('Object Repository/Page_Guru99 Bank Home Page/Page_Guru99 Bank New Customer Entry Page/input_PIN_pinno'), 
-    '')
-
-WebUI.setText(findTestObject('Object Repository/Page_Guru99 Bank Home Page/Page_Guru99 Bank New Customer Entry Page/input_Mobile Number_telephoneno'), 
-    '')
-
-WebUI.click(findTestObject('Object Repository/Page_Guru99 Bank Home Page/Page_Guru99 Bank New Customer Entry Page/td_PIN Code must have 6 Digits'))
-
-WebUI.setText(findTestObject('Object Repository/Page_Guru99 Bank Home Page/Page_Guru99 Bank New Customer Entry Page/input_E-mail_emailid'), 
-    '')
-
-WebUI.setText(findTestObject('Object Repository/Page_Guru99 Bank Home Page/Page_Guru99 Bank New Customer Entry Page/input_Password_password'), 
-    '')
-
-WebUI.click(findTestObject('Object Repository/Page_Guru99 Bank Home Page/Page_Guru99 Bank New Customer Entry Page/input_Password_sub'))
-
-// Cek jika alert muncul (expected behavior)
-if (WebUI.verifyAlertPresent(2, FailureHandling.OPTIONAL)) {
-    String alertText = WebUI.getAlertText()
-
-    WebUI.comment('⚠️ Alert muncul: ' + alertText)
-
-    // Verifikasi isi alert sesuai yang diharapkan
-    WebUI.verifyMatch(alertText.toLowerCase(), 'please fill all fields', false)
-
-    WebUI.acceptAlert()
-
-    WebUI.comment('✅ Test PASSED karena alert muncul sesuai expected')
-} else {
-    WebUI.comment('❌ Test FAILED: Tidak ada alert yang muncul padahal seharusnya ada!')
-
-    assert false
-}
-
-WebUI.click(findTestObject('Object Repository/Page_Guru99 Bank Home Page/Page_Guru99 Bank Customer Registration Page/a_Home'))
+CustomKeywords.'helpers.formCustomerhelper.goHome'()
 
 WebUI.closeBrowser()
 

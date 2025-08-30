@@ -23,11 +23,15 @@ WebUI.maximizeWindow()
 
 WebUI.navigateToUrl('https://demo.guru99.com/V4/')
 
-WebUI.setText(findTestObject('Object Repository/loginpage/input_UserID_uid'), 'sghjgtrffth')
+WebUI.setText(findTestObject('Object Repository/Page_Guru99 Bank Home Page/input_UserID_uid'), 'UserWrong')
 
-WebUI.setEncryptedText(findTestObject('Object Repository/loginpage/input_Password_password'), 'gvzKTh1O0s0=')
+WebUI.setEncryptedText(findTestObject('Object Repository/Page_Guru99 Bank Home Page/input_Password_password'), 'MrNkYzP+K8o=')
 
-WebUI.click(findTestObject('Object Repository/loginpage/input_Password_btnLogin'))
+WebUI.click(findTestObject('Object Repository/Page_Guru99 Bank Home Page/input_Password_btnLogin'))
+
+String alertText = WebUI.getAlertText()
+
+WebUI.verifyMatch(alertText, 'User or Password is not valid', false)
 
 WebUI.acceptAlert()
 

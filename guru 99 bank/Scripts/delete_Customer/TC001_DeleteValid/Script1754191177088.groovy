@@ -17,14 +17,7 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 
-WebUI.openBrowser('')
-WebUI.maximizeWindow()
-WebUI.navigateToUrl('https://demo.guru99.com/V4/')
-
-// Login
-WebUI.setText(findTestObject('Object Repository/Page_Guru99 Bank Home Page/input_UserID_uid'), 'mngr629633')
-WebUI.setEncryptedText(findTestObject('Object Repository/Page_Guru99 Bank Home Page/input_Password_password'), 'gvzKTh1O0s0=')
-WebUI.click(findTestObject('Object Repository/Page_Guru99 Bank Home Page/input_Password_btnLogin'))
+CustomKeywords.'helpers.LoginHelper.login'()
 
 // Menu Delete Customer
 WebUI.click(findTestObject('Object Repository/Page_Guru99 Bank Manager HomePage/a_Delete Customer'))
@@ -62,6 +55,6 @@ if (WebUI.waitForAlert(5)) {
     WebUI.comment("❌ Tidak ada konfirmasi alert.")
     WebUI.takeScreenshot()
 
-    // 👉 Redirect paksa kalau gagal delete
+    // Redirect paksa kalau gagal delete
     WebUI.navigateToUrl('https://demo.guru99.com/V4/manager/Managerhomepage.php')
 }

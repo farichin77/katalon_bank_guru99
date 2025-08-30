@@ -25,5 +25,11 @@ WebUI.navigateToUrl('https://demo.guru99.com/V4/')
 
 WebUI.click(findTestObject('Object Repository/Page_Guru99 Bank Home Page/input_Password_btnLogin'))
 
+String alertText = WebUI.getAlertText()
+
+WebUI.verifyMatch(alertText, 'User or Password is not valid', false)
+
+WebUI.acceptAlert()
+
 WebUI.closeBrowser()
 

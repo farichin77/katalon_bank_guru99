@@ -21,60 +21,25 @@ import org.openqa.selenium.WebDriver as WebDriver
 import org.openqa.selenium.WebElement as WebElement
 import com.kms.katalon.core.webui.common.WebUiCommonHelper as WebUiCommonHelper
 
-WebUI.openBrowser('')
+CustomKeywords.'helpers.LoginHelper.login'()
 
-WebUI.maximizeWindow()
+CustomKeywords.'helpers.Navigationhelper.goToEditCustomerPage'()
 
-WebUI.navigateToUrl('https://demo.guru99.com/V4/')
+CustomKeywords.'helpers.EditCustomerHelper.checkCustomer'('73367')
 
-WebUI.setText(findTestObject('Page_Guru99 Bank Home Page/input_UserID_uid'), 'mngr629633')
+CustomKeywords.'helpers.EditCustomerHelper.checkAllFields'('73367')
 
-WebUI.setEncryptedText(findTestObject('Page_Guru99 Bank Home Page/input_Password_password'), 'gvzKTh1O0s0=')
-
-WebUI.click(findTestObject('Page_Guru99 Bank Home Page/input_Password_btnLogin'))
-
-WebUI.click(findTestObject('Page_Guru99 Bank Manager HomePage/a_Edit Customer'))
-
-WebUI.setText(findTestObject('Page_Guru99 Bank Edit Customer Page/input_Customer ID_cusid'), GlobalVariable.customerID)
-
-WebUI.click(findTestObject('Page_Guru99 Bank Edit Customer Page/input_Customer ID_AccSubmit'))
-
-WebUI.setText(findTestObject('Page_Guru99 Bank Edit Customer Entry Page/textarea_Address'), 'jalan cemara rt 12 rw 09 bekasi selatan kota bekas')
-
-WebUI.setText(findTestObject('Page_Guru99 Bank Edit Customer Entry Page/input_City_city'), 'kota bekasi')
-
-WebUI.setText(findTestObject('Page_Guru99 Bank Edit Customer Entry Page/input_State_state'), 'jawa barat')
-
-WebUI.setText(findTestObject('Page_Guru99 Bank Edit Customer Entry Page/input_PIN_pinno'), '123456')
-
-WebUI.setText(findTestObject('Page_Guru99 Bank Edit Customer Entry Page/input_Mobile Number_telephoneno'), '0876435678')
-
-WebUI.setText(findTestObject('Page_Guru99 Bank Edit Customer Entry Page/input_E-mail_emailid'), 'agus123@gmail.com')
-
+// Klik tombol submit
 TestObject submitButton = findTestObject('Page_Guru99 Bank Edit Customer Entry Page/input_E-mail_sub')
+WebUI.click(submitButton)
 
-// 🔁 Fokus keluar dari input terakhir (biar gak auto scroll lagi)
-WebUI.executeJavaScript('document.activeElement.blur();', null)
+// Validasi halaman setelah submit
+TestObject headerObj = findTestObject('Page_Guru99 Bank Edit Customer Entry Page/h1_Header') // ganti sesuai objek nyata
+boolean isVisible = WebUI.waitForElementVisible(headerObj, 5, FailureHandling.OPTIONAL)
 
-// ⬆️ Scroll ke atas paksa
-WebUI.executeJavaScript('window.scrollTo(0, 0);', null)
-
-WebUI.delay(1)
-
-// 🎯 Scroll ke tombol + tunggu agar stabil
-WebUI.scrollToElement(submitButton, 5)
-
-WebUI.waitForElementClickable(submitButton, 10)
-
-// 🖱️ Klik tombol dengan fallback ke JS jika perlu
-try {
-    WebUI.click(submitButton)
+if (isVisible) {
+    WebUI.comment('✅ Halaman berhasil dimuat setelah submit.')
+} else {
+    WebUI.comment('❌ Halaman blank setelah submit. Mungkin bug aplikasi!')
+    assert false
 }
-catch (Exception e) {
-    WebUI.comment('⚠️ Klik biasa gagal, pakai JS click.')
-
-    WebElement element = WebUiCommonHelper.findWebElement(submitButton, 10)
-
-    WebUI.executeJavaScript('arguments[0].click();', Arrays.asList(element))
-} 
-

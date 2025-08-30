@@ -19,24 +19,22 @@ import org.openqa.selenium.Keys as Keys
 import com.kms.katalon.core.util.KeywordUtil
 
 
-WebUI.openBrowser('')
-WebUI.navigateToUrl('https://demo.guru99.com/V4/')
-WebUI.setText(findTestObject('Object Repository/Page_Guru99 Bank Home Page/input_UserID_uid'), 'mngr629633')
-WebUI.setEncryptedText(findTestObject('Object Repository/Page_Guru99 Bank Home Page/input_Password_password'), 'gvzKTh1O0s0=')
-WebUI.click(findTestObject('Object Repository/Page_Guru99 Bank Home Page/input_Password_btnLogin'))
+CustomKeywords.'helpers.LoginHelper.login'()
 
-WebUI.click(findTestObject('Object Repository/Page_Guru99 Bank Manager HomePage/a_Edit Customer'))
-WebUI.setText(findTestObject('Object Repository/Page_Guru99 Bank Edit Customer Page/input_Customer ID_cusid'), '55043')
-WebUI.click(findTestObject('Object Repository/Page_Guru99 Bank Edit Customer Page/input_Customer ID_AccSubmit'))
+CustomKeywords.'helpers.Navigationhelper.goToEditCustomerPage'()
 
+CustomKeywords.'helpers.EditCustomerHelper.checkCustomer'('73367')
+
+// Cek field Customer Name
 TestObject nameField = findTestObject('Object Repository/Page_Guru99 Bank Edit Customer Entry Page/input_Customer Name_name')
+WebUI.waitForElementVisible(nameField, 5)
 
 boolean isDisabled = WebUI.verifyElementHasAttribute(nameField, 'disabled', 1, FailureHandling.CONTINUE_ON_FAILURE)
 
 if (isDisabled) {
-    KeywordUtil.markPassed("✅ Field Nama tidak bisa diedit.")
+	KeywordUtil.markPassed("✅ Field Nama tidak bisa diedit.")
 } else {
-    KeywordUtil.markFailed("❌ Field Nama bisa diedit, padahal harusnya tidak bisa.")
+	KeywordUtil.markFailed("❌ Field Nama bisa diedit, padahal harusnya tidak bisa.")
 }
 
 WebUI.closeBrowser()

@@ -16,28 +16,30 @@ import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
+import com.kms.katalon.core.util.KeywordUtil
 
-WebUI.openBrowser('')
 
-WebUI.maximizeWindow()
+CustomKeywords.'helpers.LoginHelper.login'()
 
-WebUI.navigateToUrl('https://demo.guru99.com/V4/')
+CustomKeywords.'helpers.Navigationhelper.goToEditCustomerPage'()
 
-WebUI.setText(findTestObject('Object Repository/Page_Guru99 Bank Home Page/input_UserID_uid'), 'mngr629633')
-
-WebUI.setEncryptedText(findTestObject('Object Repository/Page_Guru99 Bank Home Page/input_Password_password'), 'gvzKTh1O0s0=')
-
-WebUI.click(findTestObject('Object Repository/Page_Guru99 Bank Home Page/input_Password_btnLogin'))
-
-WebUI.click(findTestObject('Object Repository/Page_Guru99 Bank Manager HomePage/a_Edit Customer'))
-
-WebUI.setText(findTestObject('Object Repository/Page_Guru99 Bank Edit Customer Page/input_Customer ID_cusid'), '55043')
-
-WebUI.click(findTestObject('Object Repository/Page_Guru99 Bank Edit Customer Page/input_Customer ID_AccSubmit'))
+CustomKeywords.'helpers.EditCustomerHelper.checkCustomer'('73367')
 
 WebUI.setText(findTestObject('Object Repository/Page_Guru99 Bank Edit Customer Entry Page/input_E-mail_emailid'), '')
 
 WebUI.click(findTestObject('Object Repository/Page_Guru99 Bank Edit Customer Entry Page/input_Email-ID must not be blank_sub'))
 
-WebUI.closeBrowser()
+// Tunggu alert muncul
+if (WebUI.waitForAlert(3)) {
+	String alertText = WebUI.getAlertText()
+	if (alertText.contains("Email-ID must not be blank")) {
+		KeywordUtil.markPassed("✅ Validasi email is blank berhasil: " + alertText)
+	} else {
+		KeywordUtil.markFailed("⚠️ seharusnya submit tidak bisa di klik jika email kosong: " + alertText)
+	}
+	WebUI.acceptAlert()
+} else {
+	KeywordUtil.markFailed("❌ Tidak ada alert, kemungkinan email blank masih bisa submit")
+}
+
 

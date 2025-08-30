@@ -17,77 +17,29 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 
-// === Open Browser and Navigate to Guru99 Bank Login ===
-WebUI.openBrowser('')
+CustomKeywords.'helpers.LoginHelper.login'()
 
-WebUI.maximizeWindow()
+CustomKeywords.'helpers.Navigationhelper.goToNewCustomerPage'()
 
-WebUI.navigateToUrl('https://demo.guru99.com/V4/')
+CustomKeywords.'helpers.formCustomerhelper.fillNewCustomerForm'([('name') : 'andi jaya', ('gender') : 'Male', ('dob') : '01/01/1999'
+        , ('address') : 'ds mulyosari rt 12 rw 02 bekasi', ('city') : 'Bekasi', ('state') : 'Jawa Barat', ('pin') : '123456'
+        , ('mobile') : '123456789', ('email') : '', ('password') : 'iS/zEYUBSn/RLxP4zhxx2Q=='])
 
-// === Login ===
-WebUI.setText(findTestObject('Object Repository/Page_Guru99 Bank Home Page/Page_Guru99 Bank Home Page/input_UserID_uid'), 
-    'mngr629633')
+CustomKeywords.'helpers.formCustomerhelper.submitNewCustomerForm'()
 
-WebUI.setEncryptedText(findTestObject('Object Repository/Page_Guru99 Bank Home Page/Page_Guru99 Bank Home Page/input_Password_password'), 
-    'gvzKTh1O0s0=')
-
-WebUI.click(findTestObject('Object Repository/Page_Guru99 Bank Home Page/Page_Guru99 Bank Home Page/input_Password_btnLogin'))
-
-// === Navigate to New Customer Form ===
-WebUI.click(findTestObject('Object Repository/Page_Guru99 Bank Home Page/Page_Guru99 Bank Manager HomePage/a_New Customer'))
-
-// === Fill in Customer Details ===
-WebUI.setText(findTestObject('Object Repository/Page_Guru99 Bank Home Page/Page_Guru99 Bank New Customer Entry Page/input_Customer Name_name'), 
-    'andi jaya')
-
-WebUI.click(findTestObject('Object Repository/Page_Guru99 Bank Home Page/Page_Guru99 Bank New Customer Entry Page/td_malefemale'))
-
-WebUI.setText(findTestObject('Object Repository/Page_Guru99 Bank Home Page/Page_Guru99 Bank New Customer Entry Page/input_DOB'), 
-    '01/01/1999')
-
-WebUI.setText(findTestObject('Object Repository/Page_Guru99 Bank Home Page/Page_Guru99 Bank New Customer Entry Page/textarea_Address_addr'), 
-    'ds mulyosari rt 12 rw 02 beaksi')
-
-WebUI.setText(findTestObject('Object Repository/Page_Guru99 Bank Home Page/Page_Guru99 Bank New Customer Entry Page/input_City_city'), 
-    'bekasi')
-
-WebUI.setText(findTestObject('Object Repository/Page_Guru99 Bank Home Page/Page_Guru99 Bank New Customer Entry Page/input_State_state'), 
-    'jawa barat')
-
-WebUI.setText(findTestObject('Object Repository/Page_Guru99 Bank Home Page/Page_Guru99 Bank New Customer Entry Page/input_PIN_pinno'), 
-    '123456')
-
-WebUI.setText(findTestObject('Object Repository/Page_Guru99 Bank Home Page/Page_Guru99 Bank New Customer Entry Page/input_Mobile Number_telephoneno'), 
-    '123456789')
-
-WebUI.click(findTestObject('Object Repository/Page_Guru99 Bank Home Page/Page_Guru99 Bank New Customer Entry Page/td_PIN Code must have 6 Digits'))
-
-// === Generate Unique Email ===
-String timestamp = new Date().getTime().toString()
-
-String uniqueEmail = ('andi' + timestamp) + '@mail.com'
-
-WebUI.setText(findTestObject('Object Repository/Page_Guru99 Bank Home Page/Page_Guru99 Bank New Customer Entry Page/input_E-mail_emailid'), 
-    uniqueEmail)
-
-// === Set Password ===
-WebUI.setEncryptedText(findTestObject('Object Repository/Page_Guru99 Bank Home Page/Page_Guru99 Bank New Customer Entry Page/input_Password_password'), 
-    'iS/zEYUBSn/RLxP4zhxx2Q==')
-
-// === Submit Form ===
-WebUI.click(findTestObject('Object Repository/Page_Guru99 Bank Home Page/Page_Guru99 Bank New Customer Entry Page/input_Password_sub'))
-
-// === Ambil dan Simpan Customer ID ===
 TestObject customerIdObj = findTestObject('Object Repository/label_CustomerID')
 
 WebUI.waitForElementVisible(customerIdObj, 10)
 
 String customerID = WebUI.getText(customerIdObj)
 
+assert (customerID != null) && !(customerID.isEmpty()) : ' Customer ID gagal dibuat!'
+
 GlobalVariable.customerID = customerID
 
-println('✅ Customer ID berhasil disimpan: ' + GlobalVariable.customerID)
+println(' Customer ID berhasil disimpan: ' + GlobalVariable.customerID)
 
-// === Kembali ke Home dan Close Browser ===
-WebUI.click(findTestObject('Object Repository/Page_Guru99 Bank Home Page/Page_Guru99 Bank Customer Registration Page/a_Home'))
+CustomKeywords.'helpers.formCustomerhelper.goHome'()
+
+WebUI.closeBrowser()
 

@@ -17,17 +17,8 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 
-WebUI.openBrowser('')
+CustomKeywords.'helpers.LoginHelper.login'()
 
-WebUI.maximizeWindow()
+assert WebUI.verifyElementPresent(findTestObject('Object Repository/Page_Guru99 Bank Manager HomePage/a_Edit Customer'), 10)
 
-WebUI.navigateToUrl('https://demo.guru99.com/V4/')
-
-WebUI.setText(findTestObject('Object Repository/loginpage/input_UserID_uid'), 'mngr629633')
-
-WebUI.setEncryptedText(findTestObject('Object Repository/loginpage/input_Password_password'), 'gvzKTh1O0s0=')
-
-WebUI.click(findTestObject('Object Repository/loginpage/input_Password must not be blank_btnLogin'))
-
-WebUI.closeBrowser()
 

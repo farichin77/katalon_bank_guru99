@@ -30,31 +30,30 @@ import com.kms.katalon.core.util.KeywordUtil
 import com.kms.katalon.core.webui.driver.DriverFactory
 import org.openqa.selenium.WebDriver
 
-WebUI.openBrowser('')
-WebUI.navigateToUrl('https://demo.guru99.com/V4/')
+CustomKeywords.'helpers.LoginHelper.login'()
 
-WebUI.setText(findTestObject('Object Repository/Page_Guru99 Bank Home Page/input_UserID_uid'), 'mngr629633')
-WebUI.setEncryptedText(findTestObject('Object Repository/Page_Guru99 Bank Home Page/input_Password_password'), 'gvzKTh1O0s0=')
-WebUI.click(findTestObject('Object Repository/Page_Guru99 Bank Home Page/input_Password_btnLogin'))
+CustomKeywords.'helpers.Navigationhelper.goToEditCustomerPage'()
 
-WebUI.click(findTestObject('Object Repository/Page_Guru99 Bank Manager HomePage/a_Edit Customer'))
-WebUI.setText(findTestObject('Object Repository/Page_Guru99 Bank Edit Customer Page/input_Customer ID_cusid'), '55043')
-WebUI.click(findTestObject('Object Repository/Page_Guru99 Bank Edit Customer Page/input_Customer ID_AccSubmit'))
+CustomKeywords.'helpers.EditCustomerHelper.checkCustomer'('73367')
 
 WebUI.setText(findTestObject('Object Repository/Page_Guru99 Bank Edit Customer Entry Page/input_E-mail_emailid'), 'agus@@gmail..com')
+
 WebUI.click(findTestObject('Object Repository/Page_Guru99 Bank Edit Customer Entry Page/input_E-mail_sub'))
 
 WebUI.delay(2)
 
-// ✅ Ini bagian yang diperbaiki
-WebDriver driver = DriverFactory.getWebDriver()
-String pageSource = driver.getPageSource()
-
-if (pageSource.trim().length() < 100) {
-	KeywordUtil.markPassed("✅ Halaman kosong setelah submit email invalid")
+// Tunggu alert muncul
+if (WebUI.waitForAlert(3)) {
+    String alertText = WebUI.getAlertText()
+    if (alertText.contains("Email-ID is not valid")) {
+        KeywordUtil.markPassed("✅ Validasi email invalid berhasil: " + alertText)
+    } else {
+        KeywordUtil.markFailed("⚠️ Alert muncul tapi bukan validasi email: " + alertText)
+    }
+    WebUI.acceptAlert()
 } else {
-	KeywordUtil.markFailed("❌ Halaman masih ada isi, email invalid tidak divalidasi dengan benar")
+    KeywordUtil.markFailed("❌ Tidak ada alert, kemungkinan email invalid masih bisa submit")
 }
 
-WebUI.closeBrowser()
+
 
