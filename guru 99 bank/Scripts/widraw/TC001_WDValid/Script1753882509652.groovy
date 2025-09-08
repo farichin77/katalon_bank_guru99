@@ -20,23 +20,10 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 
-WebUI.openBrowser('')
+CustomKeywords.'helpers.LoginHelper.login'()
 
-WebUI.maximizeWindow()
-
-WebUI.navigateToUrl('https://demo.guru99.com/V4/')
-
-// Login
-WebUI.setText(findTestObject('Object Repository/Page_Guru99 Bank Home Page/input_UserID_uid'), 'mngr629633')
-
-WebUI.setEncryptedText(findTestObject('Object Repository/Page_Guru99 Bank Home Page/input_Password_password'), 'gvzKTh1O0s0=')
-
-WebUI.click(findTestObject('Object Repository/Page_Guru99 Bank Home Page/input_Password must not be blank_btnLogin'))
-
-// FIX: Scroll atau klik dengan JS sebelum klik Withdrawal
 TestObject withdrawalLink = findTestObject('Object Repository/Page_Guru99 Bank Manager HomePage/a_Withdrawal')
 
-// Cara 2 (opsional jika klik biasa tetap gagal): pakai JS
 WebElement element = WebUiCommonHelper.findWebElement(withdrawalLink, 5)
 
 WebUI.executeJavaScript('arguments[0].click();', Arrays.asList(element))

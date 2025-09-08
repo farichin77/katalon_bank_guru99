@@ -20,17 +20,7 @@ import com.kms.katalon.core.webui.common.WebUiCommonHelper as WebUiCommonHelper
 import org.openqa.selenium.WebElement as WebElement
 import java.util.Arrays as Arrays
 
-WebUI.openBrowser('')
-
-WebUI.maximizeWindow()
-
-WebUI.navigateToUrl('https://demo.guru99.com/V4/')
-
-WebUI.setText(findTestObject('Object Repository/Page_Guru99 Bank Home Page/input_UserID_uid'), 'mngr629633')
-
-WebUI.setEncryptedText(findTestObject('Object Repository/Page_Guru99 Bank Home Page/input_Password_password'), 'gvzKTh1O0s0=')
-
-WebUI.click(findTestObject('Object Repository/Page_Guru99 Bank Home Page/input_Password_btnLogin'))
+CustomKeywords.'helpers.LoginHelper.login'()
 
 WebUI.click(findTestObject('Object Repository/Page_Guru99 Bank Manager HomePage/a_Delete Customer'))
 
@@ -63,6 +53,7 @@ if (WebUI.verifyAlertPresent(2, FailureHandling.OPTIONAL)) {
 
     assert false
 
-    WebUI.closeBrowser()
 }
+WebUI.closeBrowser()
+
 

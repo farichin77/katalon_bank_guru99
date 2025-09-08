@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<TestCaseEntity>
-   <description></description>
-   <name>TC001_changeValid</name>
-   <tag></tag>
-   <comment></comment>
-   <recordOption>OTHER</recordOption>
-   <testCaseGuid>5796a578-47ca-4d0a-ac9d-5778573e6cf5</testCaseGuid>
-</TestCaseEntity>

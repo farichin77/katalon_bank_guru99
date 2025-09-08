@@ -20,21 +20,7 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 
-WebUI.openBrowser('')
-
-WebUI.navigateToUrl('https://demo.guru99.com/V4/')
-
-WebUI.maximizeWindow()
-
-WebUI.setText(findTestObject('Object Repository/Page_Guru99 Bank Home Page/input_UserID_uid'), 'mngr6296')
-
-WebUI.click(findTestObject('Object Repository/Page_Guru99 Bank Home Page/input_UserID_uid'))
-
-WebUI.setText(findTestObject('Object Repository/Page_Guru99 Bank Home Page/input_UserID_uid'), 'mngr629633')
-
-WebUI.setEncryptedText(findTestObject('Object Repository/Page_Guru99 Bank Home Page/input_Password_password'), 'gvzKTh1O0s0=')
-
-WebUI.click(findTestObject('Object Repository/Page_Guru99 Bank Home Page/input_Password_btnLogin'))
+CustomKeywords.'helpers.LoginHelper.login'()
 
 WebUI.click(findTestObject('Object Repository/Page_Guru99 Bank Manager HomePage/a_Delete Account'))
 
